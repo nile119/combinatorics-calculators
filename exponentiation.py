@@ -1,41 +1,36 @@
 #
 # - Расчёт биномиальных коэффициентов
 #
+#  1. Упорядоченный, с возвращением. (Возведение в степень).
+#
+#  Исправить результат при M=0, n=0 (??)
 
-#TODO: исправить ошибку при вводе буквенных символов.
-
-
-from math import factorial
+from string import digits
 from random import randrange
 
-def u_b(): # 1. Упорядоченный. Без возвращения.
+cond1=0
+print('\n * Введи целое положительное число "M":')
+while (cond1==0):
+    M=input(' M = ')
+    if ((set(M)<=(set(digits)|{'-'}))==False)|(len(M)==0):
+        net=('Нет,','Да нет же,', 'Неправильно,')
+        print(net[randrange(len(net))],'введи целое число.\n')
+    elif {'-'}<(set(M)):
+        print('Введи ПОЛОЖИТЕЛЬНОЕ целое число.\n')
+    else:
+        cond1=1
+        
+cond2=0
+print('\n * Хорошо, теперь введи целое положительное число "M":')
+while (cond2==0):
+    n=input(' n = ')
+    if ((set(n)<=(set(digits)|{'-'}))==False)|(len(n)==0):
+        net=('Нет,','Да нет же,', 'Неправильно,')
+        print(net[randrange(len(net))],'введи целое число.\n')
+    elif {'-'}<(set(n)):
+        print('Введи ПОЛОЖИТЕЛЬНОЕ целое число.\n')
+    else:
+        cond2=1
 
-    cond1=-1
-    print('\nВведи целое положительное число "n":')
-    while (cond1==-1):
-        n=eval(input(' n = '))
-        if type(n)!=type(1):
-            net=('Нет.','Да нет же.', 'Неправильно.')
-            print(net[randrange(len(net))],'\n')
-        elif n<0:
-            print('Необходимо ПОЛОЖИТЕЛЬНОЕ целое число.\n')
-        else:
-            cond1=1
-
-    cond2=-1
-    print('\nВведи целое положительное число "M":')
-    while (cond2==-1):
-        M=eval(input(' M = '))
-        if type(M)!=type(1):
-            net=('Нет.','Да нет же.', 'Неправильно.')
-            print(net[randrange(len(net))],'\n')
-        elif M<0:
-            print('Необходимо ПОЛОЖИТЕЛЬНОЕ целое число.\n')
-        else:
-            cond2=1
-            
-
-    print('\nM в степени n = ', M**n)
-    del n,M
-    
-u_b()
+print('\nM в степени n = ', int(M)**int(n),'\n')
+del n,M
