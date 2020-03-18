@@ -3,7 +3,6 @@
 #
 #  1. Упорядоченный, с возвращением. (Возведение в степень).
 #
-#  Исправить результат при M=0, n=0 (??)
 
 from string import digits
 from random import randrange
@@ -31,6 +30,8 @@ while (cond2==0):
         print('Введи ПОЛОЖИТЕЛЬНОЕ целое число.\n')
     else:
         cond2=1
-
-print('\nM в степени n = ', int(M)**int(n),'\n')
+if int(M)==0:
+    print('\nНе имеет смысла при M=0.\n')
+else:
+    print('\nM в степени n = ', int(M)**int(n),'\n')
 del n,M
