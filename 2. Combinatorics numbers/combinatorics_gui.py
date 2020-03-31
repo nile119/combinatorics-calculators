@@ -11,6 +11,7 @@ except ImportError:
     
     
 root=tk.Tk()
+
 root.title('Комбинаторные числа')
 root1=tk.LabelFrame()
 root1.grid(padx=5,pady=5)
@@ -53,8 +54,15 @@ def result1():
         b=int(M1.get())
         if (a<=0)|(b<=0):
             res1.set('Введи M>0 и n>0')
+        elif (len(str(a))>4)|(len(str(b))>4):
+            res1.set('Длина n - < 5 знаков\nДлина M - < 5 знаков')
         else:
-            res1.set(str(b**a))
+            r1=str(b**a)
+            if len(r1)>10:
+                res1.set('~%s,%s * 10^%s' % (r1[0],r1[1:3],len(r1)-1))
+            else:
+                res1.set(str(b**a))
+           
     except ValueError:
         res1.set('Введи целые числа')
 
@@ -83,14 +91,14 @@ def result2():
             res2.set('Введи M>0')
         elif (n>M):
             res2.set('M не может быть меньше n')
+        elif (n>499)|(M>499):
+            res2.set('Число n < 500\n Число M < 500')
         else:
-            i=(M+n-1)-(n-1)
-            summa=1
-            while i<=(M+n-1):
-                summa=summa*i
-                i+=1
-            summa=int(summa/factorial(n))
-            res2.set(str(summa))
+            summa=str(int(factorial(M+n-1)/(factorial(n)*factorial(M+n-1-n))))
+            if len(summa)>10:
+                res2.set('~%s,%s * 10^%s' % (summa[0],summa[1:3],len(summa)-1))
+            else:
+                res2.set(summa)
     except ValueError:
         res2.set('Введи целые числа')
 
@@ -119,13 +127,19 @@ def result3():
             res3.set('Введи M>0')
         elif (n>M):
             res3.set('M не может быть меньше n')
+        elif (len(str(n))>4)|(len(str(M))>4):
+            res3.set('Длина n - < 5 знаков\nДлина M - < 5 знаков')
         else:
             i=M-(n-1)
             summa=1
             while i<=M:
                 summa=summa*i
                 i+=1
-            res3.set(str(summa))
+            summa=str(summa)
+            if len(summa)>10:
+                res3.set('~%s,%s * 10^%s' % (summa[0],summa[1:3],len(summa)-1))
+            else:
+                res3.set(summa)
     except ValueError:
         res3.set('Введи целые числа')
         
@@ -154,14 +168,14 @@ def result4():
             res4.set('Введи M>0')
         elif (n>M):
             res4.set('M не может быть меньше n')
+        elif (n>999)|(M>999):
+            res4.set('Число n < 1000\n Число M < 1000')
         else:
-            i=M-(n-1)
-            summa=1
-            while i<=M:
-                summa=summa*i
-                i+=1
-            summa=int(summa/factorial(n))
-            res4.set(str(summa))
+            summa=str(int(factorial(M)/(factorial(n)*factorial(M-n))))
+            if len(summa)>10:
+                res4.set('~%s,%s * 10^%s' % (summa[0],summa[1:3],len(summa)-1))
+            else:
+                res4.set(summa)
     except ValueError:
         res4.set('Введи целые числа')
 
