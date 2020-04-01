@@ -33,6 +33,6 @@ if int(M)==0:
     print('\nНе имеет смысла при M=0.\n')
 else:
     print('\nM в степени n = ', int(M)**int(n))
-if name=='posix':
+if name=='nt':
     input()
 del n,M
