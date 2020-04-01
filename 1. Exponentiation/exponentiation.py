@@ -1,11 +1,10 @@
 #
-# - Расчёт биномиальных коэффициентов
-#
-#  1. Упорядоченный, с возвращением. (Возведение в степень).
+# Возведение в степень целых чисел
 #
 
 from string import digits
 from random import randrange
+from os import name
 
 cond1=0
 print('\n * Введи целое положительное число "M":')
@@ -33,5 +32,7 @@ while (cond2==0):
 if int(M)==0:
     print('\nНе имеет смысла при M=0.\n')
 else:
-    print('\nM в степени n = ', int(M)**int(n),'\n')
+    print('\nM в степени n = ', int(M)**int(n))
+if name=='posix':
+    input()
 del n,M
