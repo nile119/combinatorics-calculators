@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import linspace, int16
 import matplotlib.pyplot as plt
 try:
     import tkinter as tk
@@ -17,7 +17,7 @@ vkladka1.title('Биномиальное распределение')
 # Отображение формулы.
 
 ramka_formula1=tk.LabelFrame(vkladka1,
-                             text='Биномиальное распределение',
+                             text='Формула распределения',
                              labelanchor=tk.N)
 ramka_formula1.grid(row=1,
                     column=1,
@@ -105,6 +105,9 @@ def n_entry(a):
         n=int(a.get())
         if (n<=0):
             return 'Число n не должно быть меньше 1,'
+        
+        elif (n>999):
+            return('Число n должно быть меньше 1000')
         else:
             return n
     except ValueError:
@@ -126,12 +129,7 @@ def debug():
 """
 
 def bin_coef(n,k):
-    i=n-(k-1)
-    summa=1
-    while i<=n:
-        summa=summa*i
-        i+=1
-    summa=int(summa/factorial(k))
+    summa=int(factorial(n)/(factorial(k)*factorial(n-k)))
     return summa
     
 #  График.
@@ -144,17 +142,21 @@ def vivod():
     p=p_entry(p1)
 
     if (type(n)==type(1))&(type(p)==type(.1)):        
-        k_1=np.linspace(0,n,n+1,dtype=np.int8)
+        k_1=linspace(0,n,n+1,dtype=int16)
         p_1=[]
         for i in k_1:
-            p_1.append(bin_coef(int(n),i)*(p**i)*((1-p)**(int(n)-i)))
-            print (p_1)
+            p_1.append(bin_coef(n,i)*(p**i)*((1-p)**(n-i)))
 
-        global grafik1,grafik,ax,na_ekrane
+        global grafik1, grafik, ax, na_ekrane
+
         plt.delaxes(ax)
-        grafik=plt.figure(1)
-        ax=grafik.add_subplot()
-        ax.plot(k_1,p_1)
+
+        grafik, ax = plt.subplots()
+        ax.bar(k_1,p_1)
+        ax.set_title('Биномиальное распределение')
+        ax.set_xlabel('k')
+        ax.set_ylabel('p(ω)')
+        ax.grid(True)
         plt.savefig('fig1.png')
 
         ramka_resultat1.delete(na_ekrane)
@@ -174,14 +176,17 @@ def vivod():
 
 def vivod_okno():
     plt.show()
-    
 
-ramka_resultat1=tk.Canvas(vkladka1)                             
-ramka_resultat1.grid(row=1,
-                     column=3,
-                     rowspan=3,
-                     padx=15,
-                     pady=15)
+ramka_re1=tk.LabelFrame(vkladka1)                             
+ramka_re1.grid(row=1,
+               column=3,
+               rowspan=3,
+               padx=15,
+               pady=15)
+
+
+ramka_resultat1=tk.Canvas(ramka_re1)                             
+ramka_resultat1.grid()
 
 grafik1=tk.PhotoImage(file='fig1.png')
 ramka_resultat1.config(height=480,width=640)
