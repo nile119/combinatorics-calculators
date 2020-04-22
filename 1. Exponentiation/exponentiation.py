@@ -13,13 +13,13 @@ cond1=0
 print('\n * Введи целое положительное число "M":')
 while (cond1==0):
     try:
-        M=input(' M = ')
+        M=int(input(' M = '))
     except:
         net=('Нет,','Да нет же,', 'Неправильно,') 
         print(net[randrange(len(net))]+'введи целое число.\n')
     else:
         if M<0:
-            print 'Введи ПОЛОЖИТЕЛЬНОЕ целое число.\n'
+            print ('Введи ПОЛОЖИТЕЛЬНОЕ целое число.\n')
         elif (len(str(M))>4):
             print('Длина M - < 5 знаков')
         else:
@@ -28,7 +28,7 @@ cond2=0
 print('\n * Хорошо, теперь введи целое положительное число "M":')
 while (cond2==0):
     try:
-        n=input(' n = ')
+        n=int(input(' n = '))
     except:
         net=('Нет,','Да нет же,', 'Неправильно,') 
         print(net[randrange(len(net))]+'введи целое число.\n')
