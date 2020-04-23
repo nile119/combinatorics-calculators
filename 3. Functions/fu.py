@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from numpy import linspace, int16
 import matplotlib.pyplot as plt
 try:
@@ -153,14 +155,14 @@ def vivod():
 
         grafik, ax = plt.subplots()
         ax.bar(k_1,p_1)
-        ax.set_title('Биномиальное распределение')
-        ax.set_xlabel('k')
-        ax.set_ylabel('p(ω)')
+        ax.set_title(u'Биномиальное распределение')
+        ax.set_xlabel(u'k')
+        ax.set_ylabel(u'p(ω)')
         ax.grid(True)
         plt.savefig('fig1.png')
 
         ramka_resultat1.delete(na_ekrane)
-        grafik1=tk.PhotoImage(file='fig1.png')
+        grafik1=tk.PhotoImage(file=u'fig1.png')
         ramka_resultat1.config(height=480,
                                width=640)
         na_ekrane= ramka_resultat1.create_image(320,
